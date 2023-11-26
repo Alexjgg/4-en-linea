@@ -1,7 +1,8 @@
 
 import { useState } from 'react';
+import confetti from 'canvas-confetti'
 import { Square } from './componets/Square.jsx'
-import { TURNS, WINNER_COMBOS } from './constants.js';
+import { TURNS } from './constants.js';
 import { WinnerModal } from './componets/WinnerModal.jsx';
 
 function App() {
@@ -17,33 +18,32 @@ function App() {
   }
 
   const checkWinner = (boardToCheck) => {
-    console.log(boardToCheck)
+    // Verificar horizontalmente
     for (let row = 0; row < 5; row++) {
-      for (let col = 0; col < 3; col++) {
-        console.log(`Checking ${col}-${row}`);
+      for (let col = 0; col < 4; col++) {
         if (
-          boardToCheck[col][row] !== null &&
-          boardToCheck[col][row] !== undefined &&
-          boardToCheck[col][row] === boardToCheck[col + 1][row] &&
-          boardToCheck[col][row] === boardToCheck[col + 2][row] &&
-          boardToCheck[col][row] === boardToCheck[col + 3][row]
+          boardToCheck[row][col] !== null &&
+          boardToCheck[row][col] !== undefined &&
+          boardToCheck[row][col] === boardToCheck[row][col + 1] &&
+          boardToCheck[row][col] === boardToCheck[row][col + 2] &&
+          boardToCheck[row][col] === boardToCheck[row][col + 3]
         ) {
-          return true;
+          return boardToCheck[row][col];
         }
       }
     }
 
     // Verificar verticalmente
-    for (let row = 0; row < 2; row++) {
-      for (let col = 0; col < 4; col++) {
+    for (let col = 0; col < 7; col++) {
+      for (let row = 0; row < 3; row++) {
         if (
-          boardToCheck[col][row] !== null &&
-          boardToCheck[col][row] !== undefined &&
-          boardToCheck[col][row] === boardToCheck[col][row + 1] &&
-          boardToCheck[col][row] === boardToCheck[col][row + 2] &&
-          boardToCheck[col][row] === boardToCheck[col][row + 3]
+          boardToCheck[row][col] !== null &&
+          boardToCheck[row][col] !== undefined &&
+          boardToCheck[row][col] === boardToCheck[row + 1][col] &&
+          boardToCheck[row][col] === boardToCheck[row + 2][col] &&
+          boardToCheck[row][col] === boardToCheck[row + 3][col]
         ) {
-          return boardToCheck[col][row];
+          return boardToCheck[row][col];
         }
       }
     }
@@ -100,6 +100,8 @@ function App() {
     setTurn(newTurn)
     const newWinner = checkWinner(newBoard)
     if (newWinner) {
+      confetti()
+      console.log(newWinner);
       setWinner(newWinner)
     } else if (checkEndGame(newBoard)) {
       setWinner(false)
@@ -108,7 +110,7 @@ function App() {
   }
   return (
     <main className='board'>
-      <h1 >Tic Tac toe</h1>
+      <h1 >4 En linea</h1>
       <button onClick={resetGame}>Reset</button>
       <section className='game'>
         {
