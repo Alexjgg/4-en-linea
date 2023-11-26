@@ -47,33 +47,32 @@ function App() {
         }
       }
     }
-
     // Verificar diagonalmente (de izquierda a derecha)
-    for (let row = 0; row < 2; row++) {
-      for (let col = 0; col < 3; col++) {
+    for (let row = 0; row < 3; row++) {
+      for (let col = 0; col < 4; col++) {
         if (
-          boardToCheck[col][row] !== null &&
-          boardToCheck[col][row] !== undefined &&
-          boardToCheck[col][row] === boardToCheck[col + 1][row + 1] &&
-          boardToCheck[col][row] === boardToCheck[col + 2][row + 2] &&
-          boardToCheck[col][row] === boardToCheck[col + 3][row + 3]
+          boardToCheck[row][col] !== null &&
+          boardToCheck[row][col] !== undefined &&
+          boardToCheck[row][col] === boardToCheck[row + 1][col + 1] &&
+          boardToCheck[row][col] === boardToCheck[row + 2][col + 2] &&
+          boardToCheck[row][col] === boardToCheck[row + 3][col + 3]
         ) {
-          return boardToCheck[col][row];
+          return boardToCheck[row][col];
         }
       }
     }
 
     // Verificar diagonalmente (de derecha a izquierda)
-    for (let row = 0; row < 2; row++) {
+    for (let row = 0; row < 3; row++) {
       for (let col = 3; col < 6; col++) {
         if (
-          boardToCheck[col][row] !== null &&
-          boardToCheck[col][row] !== undefined &&
-          boardToCheck[col][row] === boardToCheck[col - 1][row + 1] &&
-          boardToCheck[col][row] === boardToCheck[col - 2][row + 2] &&
-          boardToCheck[col][row] === boardToCheck[col - 3][row + 3]
+          boardToCheck[row][col] !== null &&
+          boardToCheck[row][col] !== undefined &&
+          boardToCheck[row][col] === boardToCheck[row + 1][col - 1] &&
+          boardToCheck[row][col] === boardToCheck[row + 2][col - 2] &&
+          boardToCheck[row][col] === boardToCheck[row + 3][col - 3]
         ) {
-          return boardToCheck[col][row];
+          return boardToCheck[row][col];
         }
       }
     }
