@@ -19,7 +19,7 @@ function App() {
 
   const checkWinner = (boardToCheck) => {
     // Verificar horizontalmente
-    for (let row = 0; row < 5; row++) {
+    for (let row = 0; row < 6; row++) {
       for (let col = 0; col < 4; col++) {
         if (
           boardToCheck[row][col] !== null &&
